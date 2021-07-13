@@ -1,0 +1,57 @@
+html {
+    box-sizing: border-box;
+}
+
+body {
+    margin: 0;
+    padding-top: 5px;
+    min-height: 100vh;
+    background-image: linear-gradient(to top right,rgb(44, 110, 231),rgb(103, 203, 243));
+}
+ul {
+    /* background-color: #04AA6D; */
+    list-style-type: none;
+    margin: 0;
+    /* padding: inherit; */
+    position: fixed;
+    top: 0;
+    width: 100%;
+    color: rgb(0, 0, 0);
+    padding-top: 5px;
+    margin-top: 5px;
+    
+}
+li{
+    display: inline;
+    text-align:center;
+
+}
+li a {
+    /* display: block; */
+    color: #000;
+    text-decoration: none;
+    padding: 10px 10px;
+      }
+
+  
+  /* Change the link color on hover */
+  li a:hover {
+    background-color: rgb(255, 255, 255);
+    color: rgb(0, 0, 0);
+  }
+  .active {
+    background-color: #ffffff;
+    color: rgb(2, 2, 2);
+  }
+ section {
+   display:flex;
+ }
+ .half{
+   width: 50%;
+ }
+ div.left{
+   text-align: left;
+ }
+ .csfont{
+   font-size:1.5rem;
+ }
