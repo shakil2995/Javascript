@@ -1,36 +1,58 @@
+.debug{
+  /* border:1px solid white; */
+}
+.debug2{
+  /* border:1px solid rgb(238, 163, 163); */
+}
 html {
     box-sizing: border-box;
 }
 
 body {
     margin: 0;
-    padding-top: 5px;
+    /* padding-top: 5px; */
     min-height: 100vh;
-    background-image: linear-gradient(to top right,rgb(44, 110, 231),rgb(103, 203, 243));
+    background-image: linear-gradient(to bottom,rgb(44, 110, 231),rgb(103, 203, 243));
 }
-ul {
+.header{
+  border: 1px solid rgb(116, 153, 255);
+  padding: auto;
+  margin: auto;
+  width: 100%;
+  position: fixed;
+
+}
+.landing {
+  font-size: 1.5rem;
+  text-align:center;
+  position: fixed;
+}
+ul.nav-bar {
     /* background-color: #04AA6D; */
     list-style-type: none;
     margin: 0;
     /* padding: inherit; */
-    position: fixed;
+    /* position: fixed; */
     top: 0;
     width: 100%;
     color: rgb(0, 0, 0);
-    padding-top: 5px;
-    margin-top: 5px;
+    /* border: 3px solid rgb(248, 66, 66); */
+    /* padding-top: 5px; */
+    /* margin-top: 5px; */
     
 }
-li{
+ul.nav-bar>li{
     display: inline;
     text-align:center;
-
+    font-size: 1.5rem;
+    /* border: 3px solid rgb(255, 248, 148); */
 }
 li a {
     /* display: block; */
     color: #000;
     text-decoration: none;
     padding: 10px 10px;
+    /* border: 3px solid rgb(154, 248, 66); */
       }
 
   
@@ -47,11 +69,44 @@ li a {
    display:flex;
  }
  .half{
-   width: 50%;
+   /* width: 50%; */
  }
- div.left{
-   text-align: left;
- }
- .csfont{
-   font-size:1.5rem;
- }
+
+article{
+    /* align-items: center; */
+    margin: 0 auto;
+}
+.products{
+  align-items: center;
+}
+.center {
+  margin: auto;
+  width: 50%;
+  /* border: 3px solid green; */
+  padding: 10px;
+}
+.product-thumbnail{
+  height: auto;
+  width: 100%;
+}
+.clearfix::after {
+  content: "";
+  clear: both;
+  display: table;
+}
+
+                                              /* Flex container */
+.flex-container {
+  display: flex;
+  /* align-items: stretch; */
+  /* background-color: #f1f1f1; */
+}
+
+.flex-container > div {
+  background-color: DodgerBlue;
+  /* color: white; */
+  /* margin: 10px; */
+  text-align: center;
+  line-height: 55px;
+  font-size: 30px;
+}
