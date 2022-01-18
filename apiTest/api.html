@@ -11,41 +11,30 @@
 </head>
 <body>
 <div class="main">
-    <div >
-    <input id="get_location" type="text" placeholder="Input your location">
-    <button type="button" class="btn btn-primary" onclick="getWeather()">Get weather</button>
+    <div class="innerbox">
+        <div >
+            <input id="get_location" type="text" placeholder="Input your location">
+            <button type="button" class="btn btn-primary" onclick="getWeather()">Get weather</button>
+            </div>
+            <div id="weather">
+                <h1>Weather for <span id='setLocation'></span></h1>
+            <p>
+                Location :  <span id = 'locationName'> currently unavailable</span> <br>
+                Condition : <span id = 'condition'>currently unavailable </span> <br>
+                Temperature : <span id = 'temp'> currently unavailable</span> <br>
+                Feels Like : <span id = 'feelsLike'> currently unavailable</span> <br>
+                Wind speed : <span id = 'windSpeed'>currently unavailable </span>
+            </p>
+        
+        </div>
+        <div id="error">
+            <h3>Location not found , please search again</h3>
+        
+        </div>
     </div>
-    <div id="weather">
-        <h1>Weather for <span id='setLocation'></span></h1>
-    <p>
-        Location :  <span id = 'locationName'> currently unavailable</span> <br>
-        Condition : <span id = 'condition'>currently unavailable </span> <br>
-        Temperature : <span id = 'temp'> currently unavailable</span> <br>
-        Feels Like : <span id = 'feelsLike'> currently unavailable</span> <br>
-        Wind speed : <span id = 'windSpeed'>currently unavailable </span>
-    </p>
-
-</div>
-<!-- <div id="iss">
-    <h1>Iss current location </h1>
-    <p>
-        latitude : <span id = 'lat'>currently unavailable</span> <br>
-        longtude : <span id = 'lng'>currently unavailable</span>
-    </p>
-
-</div> -->
-
-<div id="error">
-    <h3>Location not found , please search again</h3>
-
-</div>
 </div>
 
     <script>
-        // function backgroundImg(bgStatus) {
-        // document.body.style.backgroundImage = "url('bg.jpg')";
-        // }
-
         function hideElem() {
         document.getElementById("weather").style.visibility = "hidden";
         console.log('hidden called');
@@ -75,7 +64,6 @@
         async function getWeather(){
             hideError();
             let location = document.getElementById("get_location").value;
-            // var location = window.prompt("enter your location")
             const weatherApi_url = `https://api.openweathermap.org/data/2.5/weather?q=${location}&units=metric&appid=398e310b24f291b753fabdb60b31cc14`
             const response = await fetch (weatherApi_url);
             const data = await response.json();
@@ -102,12 +90,10 @@
 
             if (weatherStatus>=200 && weatherStatus<300){
                 document.body.style.backgroundImage = "url('img/storm.jpg')";
-                // document.body.style.backgroundColor = "#535dac"
                 document.body.style.color = "white"
                 }
             else if (weatherStatus>=300 && weatherStatus<400){
                 document.body.style.backgroundImage = "url('img/drizzle.png')";
-                // document.body.style.backgroundColor = "#80827d"
                 document.body.style.color = "white"
                 }
             // if (weatherStatus>=200 && weatherStatus<200){
@@ -117,40 +103,33 @@
             //     }
             else if (weatherStatus>=400 && weatherStatus<500){
                 document.body.style.backgroundImage = "url('img/rainy.jpg')";
-                // document.body.style.backgroundColor = "#c37d3c"
                 document.body.style.color = "white"
                 }
             else if (weatherStatus>=500 && weatherStatus<600){
                 document.body.style.backgroundImage = "url('img/snow.jpg')";
-                // document.body.style.backgroundColor = "#c37d3c"
                 document.body.style.color = "white"
                 }
             else if (weatherStatus>=700 && weatherStatus<800){
                 document.body.style.backgroundImage = "url('img/haze.jpg')";
-                // document.body.style.backgroundColor = "#c37d3c"
                 document.body.style.color = "white"
                 }
             else if (weatherStatus==800){
                 document.body.style.backgroundImage = "url('img/clear.jpg')";
-                // document.body.style.backgroundColor = "#c37d3c"
                 document.body.style.color = "white"
                 }
             else if (weatherStatus>800 && weatherStatus<900){
                 document.body.style.backgroundImage = "url('img/clouds.jpg')";
-                // document.body.style.backgroundColor = "#c37d3c"
                 document.body.style.color = "white"
                 }
             else {
                 document.body.style.backgroundImage = "url(img/Black.png)";
-                // document.body.style.backgroundColor = "#c37d3c"
                 document.body.style.color = "white"
             }
 
-                
+               
         }
         hideElem();
         hideError();
-        // backgroundImg()
     </script>
 
 
