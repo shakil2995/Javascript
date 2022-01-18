@@ -1,2 +1,2 @@
 # Javascript
- visit : https://shakil2995.github.io/Javascript/
+ visit : https://shakil2995.netlify.app/
