@@ -19,6 +19,7 @@
         <h1>Weather for <span id='setLocation'></span></h1>
     <p>
         Location :  <span id = 'locationName'> currently unavailable</span> <br>
+        Condition : <span id = 'condition'>currently unavailable </span> <br>
         Temperature : <span id = 'temp'> currently unavailable</span> <br>
         Feels Like : <span id = 'feelsLike'> currently unavailable</span> <br>
         Wind speed : <span id = 'windSpeed'>currently unavailable </span>
@@ -41,6 +42,10 @@
 </div>
 
     <script>
+        // function backgroundImg(bgStatus) {
+        // document.body.style.backgroundImage = "url('bg.jpg')";
+        // }
+
         function hideElem() {
         document.getElementById("weather").style.visibility = "hidden";
         console.log('hidden called');
@@ -89,26 +94,30 @@
             document.getElementById('feelsLike').textContent=data.main.feels_like;
             document.getElementById('locationName').textContent= data.name;
             document.getElementById('windSpeed').textContent= data.wind.speed;
-            changeBackgroundUsingApiData(data.main.temp)
-
-            showElem(weather)
+            document.getElementById('condition').textContent= data.weather[0].id;
+            changeBackgroundUsingApiData(data.weather[0].id);
+            showElem(weather);
         }
-        function changeBackgroundUsingApiData(temp){
+        function changeBackgroundUsingApiData(weatherStatus){
 
-            if (temp<20){
-                document.body.style.backgroundColor = "#000355"
+            if (weatherStatus=="Snow"){
+                document.body.style.backgroundImage = "url('cold.jpg')";
+                // document.body.style.backgroundColor = "#535dac"
                 document.body.style.color = "white"
                 }
-            if (temp>20){
-                document.body.style.backgroundColor = "#535dac"
+            if (weatherStatus==="Drizzle"){
+                document.body.style.backgroundImage = "url('rainy.jpg')";
+                // document.body.style.backgroundColor = "#80827d"
                 document.body.style.color = "white"
                 }
-            if (temp>25){
-                document.body.style.backgroundColor = "#80827d"
+            if (weatherStatus==="Clear"){
+                document.body.style.backgroundImage = "url('sunny.jpg')";
+                // document.body.style.backgroundColor = "#c37d3c"
                 document.body.style.color = "white"
                 }
-                if (temp>30){
-                document.body.style.backgroundColor = "#c37d3c"
+            if (weatherStatus==="Clouds"){
+                document.body.style.backgroundImage = "url('clouds.jpg')";
+                // document.body.style.backgroundColor = "#c37d3c"
                 document.body.style.color = "white"
                 }
 
@@ -116,6 +125,7 @@
         }
         hideElem();
         hideError();
+        // backgroundImg()
     </script>
 
 
