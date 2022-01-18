@@ -2,17 +2,30 @@ body{
     background:lavender
 }
 div.main{
-    text-align: justify;
     padding-top:20%;
-    width: 30em;
-    text-align-last: center;
-    width: 60%;
+    /* width: 30em; */
+    text-align: center;
+    width: 40%;
+  
     margin-left: auto;
     margin-right: auto;
     
 }
 div.innerbox{
+    display:auto;
     padding-top:5%;
-    background-color: rgba(0, 0, 0, 0.4);
+    padding-bottom:5%;
+    background-color: rgba(0, 0, 0, 0.2);
     border:1px solid white;
 }
+img{
+    object-fit: fill;
+}
+@media only screen and (max-width: 600px) {
+    div.main {
+        width:80%;
+    }
+    .btn{
+        padding : 5px;
+    }
+  }
