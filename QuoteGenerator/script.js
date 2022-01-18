@@ -23,8 +23,9 @@ const loader = document.getElementById('loader');
 //     }
 // }
 // console.log('Hello 2');
+// window.alert("sometext");
 
-
+//get quote from api
 async function getQuote() {
     loading();
     const proxyUrl = 'https://whispering-tor-04671.herokuapp.com/'

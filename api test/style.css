@@ -1,0 +1,17 @@
+body{
+    background:lavender
+}
+input{
+    /* padding:4px; */
+}
+div.main{
+    text-align: justify;
+    padding-top:50px;
+    width: 30em;
+    text-align-last: center;
+    /* border:1px solid red; */
+    width: 60%;
+    margin-left: auto;
+    margin-right: auto;
+
+}
