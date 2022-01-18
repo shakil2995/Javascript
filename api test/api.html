@@ -10,17 +10,17 @@
     <title>Document</title>
 </head>
 <body>
-    
-
 
     <div class="main">
     <input id="get_location" type="text" placeholder="Input your location">
     <button type="button" class="btn btn-primary" onclick="getWeather()">Get weather</button>
-    <!-- <h1>Iss current location </h1>
+    </div>
+    <div id="weather">
+    <h1>Iss current location </h1>
     <p>
         latitude : <span id = 'lat'>currently unavailable</span> <br>
         longtude : <span id = 'lng'>currently unavailable</span>
-    </p> -->
+    </p>
 
     <h1>Weather for <span id='setLocation'></span></h1>
     <p>
@@ -31,7 +31,32 @@
     </p>
 
 </div>
+
+<div id="error">
+    <h3>Location not found , please search again</h3>
+
+</div>
+
+
     <script>
+        function hideElem() {
+        document.getElementById("weather").style.visibility = "hidden";
+        console.log('hidden called');
+        }
+        function hideError() {
+        document.getElementById("error").style.visibility = "hidden";
+        console.log('hidden called');
+        }
+
+        function showElem() {
+        document.getElementById("weather").style.visibility = "visible";
+        console.log('error show called');
+}
+        function showError() {
+                document.getElementById("error").style.visibility = "visible";
+                console.log('error show called');
+                }
+
         async function getISS(){
             const issApi_url = 'https://api.wheretheiss.at/v1/satellites/25544'
             const response =await fetch (issApi_url);
@@ -41,6 +66,7 @@
             // alert(data.id);
         }
         async function getWeather(){
+            hideError();
             let location = document.getElementById("get_location").value;
             // var location = window.prompt("enter your location")
             const weatherApi_url = `https://api.openweathermap.org/data/2.5/weather?q=${location}&units=metric&appid=398e310b24f291b753fabdb60b31cc14`
@@ -53,15 +79,8 @@
                 
             }
             catch(err){
-            document.getElementById('setLocation').textContent=location;
-            document.getElementById('temp').textContent=data.main.temp+'°C';
-            document.getElementById('feelsLike').textContent=data.main.feels_like;
-            document.getElementById('locationName').textContent= data.name;
-            document.getElementById('windSpeed').textContent= data.wind.speed;
-            changeBackgroundUsingApiData(data.main.temp)
                 console.log("json error " + err);
-                // window.alert("Location not found , try again ");
-                // getWeather();
+                showError()
             }
             document.getElementById('setLocation').textContent=location;
             document.getElementById('temp').textContent=data.main.temp+'°C';
@@ -69,6 +88,8 @@
             document.getElementById('locationName').textContent= data.name;
             document.getElementById('windSpeed').textContent= data.wind.speed;
             changeBackgroundUsingApiData(data.main.temp)
+
+            showElem(weather)
         }
         function changeBackgroundUsingApiData(temp){
 
@@ -91,9 +112,8 @@
 
                 
         }
-        // getISS();
-        getWeather();
-
+        hideElem();
+        hideError();
     </script>
 
 
