@@ -53,7 +53,7 @@ function hideElem() {
             showError()
         }
         let locationIcon = document.querySelector('.weather-icon');
-        locationIcon.innerHTML =`<img src=http://openweathermap.org/img/wn/${data.weather[0].icon}@2x.png>`;
+        locationIcon.innerHTML =`<img src=https://openweathermap.org/img/wn/${data.weather[0].icon}@2x.png>`;
         document.getElementById('setLocation').textContent=data.name;
         document.getElementById('temp').textContent=Math.round(data.main.temp)+'°C';
         document.getElementById('feelsLike').textContent=Math.round(data.main.feels_like)+'°C';
