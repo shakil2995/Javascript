@@ -20,6 +20,10 @@
     <br>
     <a href="apiTest/api.html"><button type="button" class="btn btn-primary" >Live Weather api test</button></a> 
 
-
+<script>    
+if ('serviceWorker' in navigator){
+    navigator.serviceWorker.register('/service-worker.js');
+}
+</script>
 </body>
 </html>

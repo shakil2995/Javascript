@@ -113,5 +113,8 @@ function hideElem() {
     hideError();
     document.body.style.backgroundImage = "url(img/default.jpg)";
     getWeather("dhaka");
-    
+    if ('serviceWorker' in navigator){
+        navigator.serviceWorker.register('/service-worker.js');
+    }
+        
     
