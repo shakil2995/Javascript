@@ -24,9 +24,15 @@ function hideElem() {
         document.getElementById('lng').textContent=data.longitude;
         // alert(data.id);
     }
-    async function getWeather(){
+    async function getWeather(status){
+        let location=status;
+        if(status!="dhaka")
+        {
+            location = document.getElementById("get_location").value;
+        }
+
+
         hideError();
-        let location = document.getElementById("get_location").value;
         if(!isNaN(location))
         {
             console.log('returning')
@@ -106,3 +112,6 @@ function hideElem() {
     hideElem();
     hideError();
     document.body.style.backgroundImage = "url(img/default.jpg)";
+    getWeather("dhaka");
+    
+    
