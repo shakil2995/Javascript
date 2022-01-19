@@ -40,7 +40,9 @@ function hideElem() {
             console.log("json error " + err);
             showError()
         }
-        document.getElementById('setLocation').textContent=location;
+        let locationIcon = document.querySelector('.weather-icon');
+        locationIcon.innerHTML =`<img src=http://openweathermap.org/img/wn/${data.weather[0].icon}@2x.png>`;
+        document.getElementById('setLocation').textContent=data.name;
         document.getElementById('temp').textContent=data.main.temp+'°C';
         document.getElementById('feelsLike').textContent=data.main.feels_like;
         document.getElementById('locationName').textContent= data.name;
