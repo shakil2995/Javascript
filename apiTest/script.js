@@ -27,6 +27,12 @@ function hideElem() {
     async function getWeather(){
         hideError();
         let location = document.getElementById("get_location").value;
+        if(!isNaN(location))
+        {
+            console.log('returning')
+            showError()
+            return 0; 
+        }
         const weatherApi_url = `https://api.openweathermap.org/data/2.5/weather?q=${location}&units=metric&appid=398e310b24f291b753fabdb60b31cc14`
         const response = await fetch (weatherApi_url);
         const data = await response.json();
