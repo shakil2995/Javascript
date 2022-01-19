@@ -73,7 +73,7 @@ function hideElem() {
         //     document.body.style.color = "white"
         //     }
         else if (weatherStatus>=400 && weatherStatus<=500){
-            document.body.style.backgroundImage = "url('img/rainy.jpg')";
+            document.body.style.backgroundImage = "url('img/storm.jpg')";
             document.body.style.color = "white"
             }
         else if (weatherStatus>=500 && weatherStatus<=600){
@@ -105,4 +105,4 @@ function hideElem() {
     }
     hideElem();
     hideError();
-    document.body.style.backgroundImage = "url(img/storm.jpg)";
+    document.body.style.backgroundImage = "url(img/default.jpg)";
