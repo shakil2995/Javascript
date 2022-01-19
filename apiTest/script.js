@@ -105,4 +105,4 @@ function hideElem() {
     }
     hideElem();
     hideError();
-    document.body.style.backgroundImage = "url(img/default.jpg)";
+    document.body.style.backgroundImage = "url(img/storm.jpg)";
