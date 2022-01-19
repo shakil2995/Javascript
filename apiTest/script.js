@@ -55,10 +55,10 @@ function hideElem() {
         let locationIcon = document.querySelector('.weather-icon');
         locationIcon.innerHTML =`<img src=http://openweathermap.org/img/wn/${data.weather[0].icon}@2x.png>`;
         document.getElementById('setLocation').textContent=data.name;
-        document.getElementById('temp').textContent=data.main.temp+'°C';
-        document.getElementById('feelsLike').textContent=data.main.feels_like;
+        document.getElementById('temp').textContent=Math.round(data.main.temp)+'°C';
+        document.getElementById('feelsLike').textContent=Math.round(data.main.feels_like)+'°C';
         document.getElementById('locationName').textContent= data.name;
-        document.getElementById('windSpeed').textContent= data.wind.speed;
+        document.getElementById('windSpeed').textContent= data.wind.speed+' Km/h';
         document.getElementById('condition').textContent= data.weather[0].main;
         changeBackgroundUsingApiData(data.weather[0].id);
         showElem(weather);
