@@ -13,7 +13,7 @@ function hideElem() {
 }
     function showError() {
             document.getElementById("error").style.display = "block";
-            console.log('error show called');
+            // console.log('error show called');
             }
 
     async function getISS(){
@@ -30,8 +30,6 @@ function hideElem() {
         {
             location = document.getElementById("get_location").value;
         }
-
-
         hideError();
         if(!isNaN(location))
         {
@@ -111,10 +109,9 @@ function hideElem() {
     }
     hideElem();
     hideError();
-    document.body.style.backgroundImage = "url(img/default.jpg)";
     getWeather("dhaka");
-    if ('serviceWorker' in navigator){
-        navigator.serviceWorker.register('/service-worker.js');
-    }
+    // if ('serviceWorker' in navigator){
+    //     navigator.serviceWorker.register('/service-worker.js');
+    // }
         
     
