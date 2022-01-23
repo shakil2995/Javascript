@@ -1,87 +1,93 @@
-function hideElem() {
-    document.getElementById("weather").style.display = "none";
-    console.log('hidden called');
-    }
-    function hideError() {
-    document.getElementById("error").style.display = "none";
-    console.log('hidden called');
-    }
-
-    function showElem() {
-    document.getElementById("weather").style.display = "block";
-    console.log('error show called');
-}
-    function showError() {
+function errorHandler(errorCode){
+    switch (errorCode){
+        case "hideElem":
+            console.log("hideElem")
+            document.getElementById("weather").style.display = "none";
+            console.log('hidden called');
+            break;
+        case "showElem":
+            console.log("showElem")
+            document.getElementById("weather").style.display = "block";
+            console.log('error show called');
+            break;
+        case "showError":
+            console.log("showError")
+            document.getElementById("weather").style.display = "none";
             document.getElementById("error").style.display = "block";
-            // console.log('error show called');
-            }
-
-    async function getISS(){
-        const issApi_url = 'https://api.wheretheiss.at/v1/satellites/25544'
-        const response =await fetch (issApi_url);
-        const data = await response.json();
-        document.getElementById('lat').textContent=data.latitude;
-        document.getElementById('lng').textContent=data.longitude;
-        // alert(data.id);
-    }
+            document.getElementById("error").textContent = "Location not found. Please search again";
+            break;
+        case "hideError":
+            console.log("hideError")
+            document.getElementById("error").style.display = "none";
+            break;
+        case "showUnavailable":
+            console.log("showUnavailable")
+            document.getElementById("weather").style.display = "block";
+            document.getElementById('setLocation').textContent="Weather for "+document.getElementById("get_location").value;
+            document.getElementById('temp').textContent="Temperature : unavailable";
+            document.getElementById('feelsLike').textContent="Feels Like : unavailable";
+            document.getElementById('locationName').textContent= "Location : unavailable";
+            document.getElementById('windSpeed').textContent= "Wind speed : unavailable";
+            document.getElementById('condition').textContent="Condition : unavailable";
+            changeBackgroundUsingApiData("sunny");
+        }
+}
     async function getWeather(status){
         let location=status;
         if(status!="dhaka")
         {
             location = document.getElementById("get_location").value;
         }
-        hideError();
+        errorHandler("hideError");
         if(!isNaN(location))
         {
             console.log('returning')
-            showError()
+            errorHandler("hideElem")
+            errorHandler("showError")
             return 0; 
         }
         const weatherApi_url = `https://api.openweathermap.org/data/2.5/weather?q=${location}&units=metric&appid=398e310b24f291b753fabdb60b31cc14`
         const response = await fetch (weatherApi_url);
         const data = await response.json();
+        console.log(typeof(data.name))
         try{
-            if (!data.name){
-                throw new SyntaxError("no data");
+            if(data.cod=="401")
+                {errorHandler("showUnavailable")
+                throw new SyntaxError("Api not working");
+             }
+            else if (data.cod=="404"){
+                errorHandler("showError")
+                throw new SyntaxError("location not found");
             }
             
         }
         catch(err){
-            console.log("json error " + err);
-            showError()
+            console.log("json error " + err)
+            errorHandler("showError")
         }
         let locationIcon = document.querySelector('.weather-icon');
         locationIcon.innerHTML =`<img src=https://openweathermap.org/img/wn/${data.weather[0].icon}@2x.png>`;
-        document.getElementById('setLocation').textContent=data.name;
-        document.getElementById('temp').textContent=Math.round(data.main.temp)+'°C';
-        document.getElementById('feelsLike').textContent=Math.round(data.main.feels_like)+'°C';
-        document.getElementById('locationName').textContent= data.name;
-        document.getElementById('windSpeed').textContent= data.wind.speed+' Km/h';
-        document.getElementById('condition').textContent= data.weather[0].main;
+        document.getElementById('setLocation').textContent="Weather for "+data.name;
+        document.getElementById('temp').textContent="Temperature : "+Math.round(data.main.temp)+'°C';
+        document.getElementById('feelsLike').textContent="Feels Like : "+Math.round(data.main.feels_like)+'°C';
+        document.getElementById('locationName').textContent="Location : "+ data.name;
+        document.getElementById('windSpeed').textContent="Wind speed : " +data.wind.speed+' Km/h';
+        document.getElementById('condition').textContent="Condition : " + data.weather[0].main;
         changeBackgroundUsingApiData(data.weather[0].id);
-        showElem(weather);
+        errorHandler("showElem")
     }
     function changeBackgroundUsingApiData(weatherStatus){
 
-        if (weatherStatus>=200 && weatherStatus<=300){
-            document.body.style.backgroundImage = "url('img/storm.jpg')";
+        if (weatherStatus>=200 && weatherStatus<300){
+            document.body.style.backgroundImage = "url('img/thunderstorm.jpg')";
             document.body.style.color = "white"
             }
-        else if (weatherStatus>=300 && weatherStatus<=400){
-            document.body.style.backgroundImage = "url('img/drizzle.png')";
+        else if (weatherStatus>=300 && weatherStatus<400){
+            document.body.style.backgroundImage = "url('img/drizzle.jpg')";
             document.body.style.color = "white"
             }
-        // if (weatherStatus>=200 && weatherStatus<200){
-        //     document.body.style.backgroundImage = "url('img/rain.jpg')";
-        //     // document.body.style.backgroundColor = "#c37d3c"
-        //     document.body.style.color = "white"
-        //     }
-        else if (weatherStatus>=400 && weatherStatus<=500){
-            document.body.style.backgroundImage = "url('img/storm.jpg')";
-            document.body.style.color = "white"
-            }
-        else if (weatherStatus>=500 && weatherStatus<=600){
-            document.body.style.backgroundImage = "url('img/snow.jpg')";
+        else if (weatherStatus>=500 && weatherStatus<600){
+            document.body.style.backgroundImage = "url('img/drizzle.jpg')";
             document.body.style.color = "white"
             }
         else if (weatherStatus>=600 && weatherStatus<700){
@@ -101,17 +107,10 @@ function hideElem() {
             document.body.style.color = "white"
             }
         else {
-            document.body.style.backgroundImage = "url(img/default.jpg)";
+            console.log("default")
+            document.body.style.backgroundImage = "url(img/sunny.jpg)";
             document.body.style.color = "white"
         }
-
            
     }
-    hideElem();
-    hideError();
     getWeather("dhaka");
-    // if ('serviceWorker' in navigator){
-    //     navigator.serviceWorker.register('/service-worker.js');
-    // }
-        
-    
